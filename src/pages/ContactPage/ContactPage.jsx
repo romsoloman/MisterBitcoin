@@ -27,7 +27,7 @@ export class ContactPage extends Component {
         return (this.state.selectedContact && <ContactDetailsPage selectedContact={this.state.selectedContact} closeContactDetails={this.closeContactDetails} />)
     }
     render() {
-        const { contacts, selectedContact } = this.state;
+        const { contacts } = this.state;
         return (
             contacts && <div className='contact-page'>
                 <h1>Contacts</h1>
