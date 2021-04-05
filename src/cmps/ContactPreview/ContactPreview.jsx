@@ -5,7 +5,7 @@ export const ContactPreview = ({ contact, onSelectContact }) => {
 
     return (
         <li className='contact-preview' onClick={() => onSelectContact(contact._id)}>
-            <img src={`https://randomuser.me/api/portraits/men/${random}.jpg`} alt="" />
+            {/* <img src={`https://randomuser.me/api/portraits/men/${random}.jpg`} alt="" /> */}
             <h5>{contact.name}</h5>
         </li>
     )

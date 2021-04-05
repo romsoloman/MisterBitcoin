@@ -1,12 +1,12 @@
+import './Chart.scss';
+import { Doughnut } from 'react-chartjs-2';
 
-
-import './Chart.scss'
 
 export const Chart = (props) => {
 
     return (
         <div>
-        
+
         </div>
     )
 }
