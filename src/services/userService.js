@@ -1,14 +1,14 @@
-export default userService = {
+export default {
     getUser,
 }
 
-const gUser = [
-    {
-        name: "Ochoa Hyde",
-        coins: 100,
-        moves: []
-    }
-]
+const gUser =
+{
+    name: "Rom Soloman",
+    coins: 60000,
+    moves: []
+}
+
 
 function getUser() {
     return Promise.resolve(gUser);

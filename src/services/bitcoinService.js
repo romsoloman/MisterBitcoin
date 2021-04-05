@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 
-export default bitcoinService = {
+export default {
     getRate,
     getMarketPrice,
     getConfirmedTransactions,
@@ -9,10 +9,10 @@ export default bitcoinService = {
 
 
 function getRate(coins) {
-    axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
-        .then(function (response) {
-            console.log(response);
-            return response;
+    return axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
+        .then(res => {
+            console.log('res.data', res.data);
+            return res.data;
         })
         .catch(function (error) {
             console.log(error);

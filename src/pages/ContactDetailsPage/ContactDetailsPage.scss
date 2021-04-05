@@ -1,1 +1,9 @@
-.contactDetailsPage {}
+.contact-details-page {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 30%;
+    height: 50%;
+    z-index: 3;
+    background-color: #eee;
+}
