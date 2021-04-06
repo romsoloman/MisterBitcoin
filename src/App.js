@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import { HomePage } from './pages/HomePage/HomePage';
 import { ContactPage } from './pages/ContactPage/ContactPage';
+import { StatisticPage } from './pages/StatisticPage/StatisticPage';
+
 
 function App() {
   return (
@@ -21,12 +23,15 @@ function App() {
             <li>
               <Link to="/contacts">Contacts</Link>
             </li>
-            {/* <li>
-              <Link to="/topics">Topics</Link>
-            </li> */}
+            <li>
+              <Link to="/statistics">Statistics</Link>
+            </li>
           </ul>
 
           <Switch>
+            <Route path="/statistics">
+              <StatisticPage />
+            </Route>
             <Route path="/contacts">
               <ContactPage />
             </Route>

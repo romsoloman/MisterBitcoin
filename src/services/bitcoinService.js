@@ -21,9 +21,25 @@ function getRate(coins) {
 }
 
 function getMarketPrice() {
-
+    return axios.get(`https://api.blockchain.info/charts/market-price?timespan=5months&format=json&cors=true`)
+        .then(res => {
+            console.log('res.data', res.data);
+            return res.data.values;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return error;
+        })
 }
 
 function getConfirmedTransactions() {
-
+    return axios.get(`https://api.blockchain.info/charts/trade-volume?timespan=5months&format=json&cors=true`)
+        .then(res => {
+            console.log('res.data', res.data);
+            return res.data.values;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return error;
+        })
 }
