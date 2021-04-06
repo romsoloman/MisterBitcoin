@@ -7,7 +7,7 @@ export default {
   getEmptyContact
 }
 
-const contactsDB = 'contacts';
+const CONTACTS_DB = 'contacts';
 
 const contacts = [
   {
@@ -141,7 +141,7 @@ function sort(arr) {
 }
 
 function getContacts(filterBy = null) {
-  var contactsToReturn = loadFromStorage(contactsDB) || saveToStorage(contactsDB, contacts);
+  var contactsToReturn = loadFromStorage(CONTACTS_DB) || saveToStorage(CONTACTS_DB, contacts);
   return new Promise((resolve, reject) => {
     if (filterBy) {
       contactsToReturn = filter(filterBy)
@@ -151,7 +151,7 @@ function getContacts(filterBy = null) {
 }
 
 function getContactById(id) {
-  var contact = loadFromStorage(contactsDB);
+  var contact = loadFromStorage(CONTACTS_DB);
   return new Promise((resolve, reject) => {
     contact = contacts.find(contact => contact._id === id)
     contact ? resolve(contact) : reject(`Contact id ${id} not found!`)
@@ -164,7 +164,7 @@ function deleteContact(id) {
     if (index !== -1) {
       contacts.splice(index, 1)
     }
-    saveToStorage(contactsDB, contacts)
+    saveToStorage(CONTACTS_DB, contacts)
     resolve(contacts)
   })
 }
@@ -175,7 +175,7 @@ function _updateContact(contact) {
     if (index !== -1) {
       contacts[index] = contact
     }
-    saveToStorage(contactsDB, contacts)
+    saveToStorage(CONTACTS_DB, contacts)
     resolve(contact)
   })
 }
@@ -184,17 +184,17 @@ function _addContact(contact) {
   return new Promise((resolve, reject) => {
     contact._id = _makeId()
     contacts.push(contact)
-    saveToStorage(contactsDB, contacts)
+    saveToStorage(CONTACTS_DB, contacts)
     resolve(contact)
   })
 }
 
 function saveContact(contact) {
   if (contact._id) {
-    saveToStorage(contactsDB, contacts)
+    saveToStorage(CONTACTS_DB, contacts)
     return _updateContact(contact)
   } else {
-    saveToStorage(contactsDB, contacts)
+    saveToStorage(CONTACTS_DB, contacts)
     return _addContact(contact)
   }
 }
