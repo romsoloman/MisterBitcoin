@@ -18,11 +18,14 @@ export class ContactFilter extends Component {
         const { name, phone } = this.state;
         return (
             <form className="contact-filter" onSubmit={(ev) => ev.preventDefault()}>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" value={name} onChange={this.handleChange} />
-
-                <label htmlFor="phone">Phone</label>
-                <input type="text" id="phone" name="phone" value={phone} onChange={this.handleChange} />
+                <div className="name">
+                    {/* <label htmlFor="name">Name</label> */}
+                    <input type="text" id="name" name="name" value={name} onChange={this.handleChange} placeholder="Name" />
+                </div>
+                {/* <div className="phone">
+                    <label htmlFor="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" value={phone} onChange={this.handleChange} />
+                </div> */}
             </form >
         )
     }

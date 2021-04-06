@@ -27,10 +27,9 @@ export class ContactPage extends Component {
         const { contacts } = this.state;
         return (
             contacts && <div className='contact-page'>
-                <h1>Contacts</h1>
                 <ContactFilter onFilter={this.onFilter} />
                 <ContactList contacts={contacts} />
-                <Link to='/contacts/edit' >Add Contact</Link>
+                <button><Link to='/contacts/edit' >Add Contact</Link></button>
             </div>
         )
     }

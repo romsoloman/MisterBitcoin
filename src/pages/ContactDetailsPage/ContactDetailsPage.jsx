@@ -29,12 +29,18 @@ export class ContactDetailsPage extends Component {
         const { contact } = this.state;
         return (
             contact && <div className='contact-details-page'>
-                <button onClick={this.closeDetails}>X</button>
-                <h3>Name:{contact.name}</h3>
-                <h3>Phone:{contact.phone}</h3>
-                <h3>Email:{contact.email}</h3>
-                <Link to={'/contacts/edit/' + this.props.match.params.id}>Edit Contact</Link>
-                <button onClick={this.onDeleteContact}>Delete Contact</button>
+                <header>
+                    <button onClick={this.closeDetails} className='exit-btn'><i className="fas fa-times"></i></button>
+                </header>
+                <main className="user-info">
+                    <h3>Name: {contact.name}</h3>
+                    <h3>Phone: {contact.phone}</h3>
+                    <h3>Email: {contact.email}</h3>
+                </main>
+                <footer>
+                    <button className='btn edit-btn'><Link to={'/contacts/edit/' + this.props.match.params.id}>Edit Contact</Link></button>
+                    <button className='btn delete-btn' onClick={this.onDeleteContact}>Delete Contact</button>
+                </footer>
             </div>
         )
     }

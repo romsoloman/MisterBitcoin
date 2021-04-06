@@ -1,9 +1,50 @@
 .contact-details-page {
-    position: absolute;
-    top: 30%;
-    left: 30%;
-    width: 30%;
-    height: 50%;
-    z-index: 3;
-    background-color: #eee;
+    margin: 3rem auto 0;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 350px;
+    height: 500px;
+    background-color:rgb(255, 255, 255);
+    border-radius: 10px;
+    header{
+        button{
+            border: none;
+            background-color: white;
+            font-size: 22px;
+            float: right;
+            text-align: right;
+        }
+    }
+    .user-info{
+        height: 370px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    footer{
+        display: flex;
+        justify-content: space-between;
+        .btn{
+            padding: 2px 5px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        .delete-btn{
+            background-color: rgb(227, 62, 62);
+            color: white;
+        }
+        .edit-btn{
+            background-color: rgb(62, 117, 227);
+            a{
+                color: white;
+            }
+        }
+    }
+}
+
+button{
+    width: 100px;
+    cursor: pointer;
 }

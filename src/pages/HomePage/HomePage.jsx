@@ -34,9 +34,11 @@ export class HomePage extends Component {
         const { user, currBtcRate } = this.state;
         return (
             user && <div className='home-page'>
-                <h1> Hello {user.name} </h1>
-                <h3><span>💵</span> Coins: {this.currentCurrency}</h3>
-                <h3><span>🪙</span> BTC: {currBtcRate}</h3>
+                <div className="user-details">
+                    <h1> Hello {user.name} </h1>
+                    <h3><span>💵</span> Coins: {this.currentCurrency}</h3>
+                    <h3><span>🪙</span> BTC: {currBtcRate}</h3>
+                </div>
             </div>
         )
     }

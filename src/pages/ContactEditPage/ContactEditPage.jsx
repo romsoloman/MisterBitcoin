@@ -29,14 +29,20 @@ export class ContactEditPage extends Component {
         const { contact } = this.state;
         return (
             contact && <form className='edit-page' onSubmit={(ev) => ev.preventDefault()}>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" value={contact.name} onChange={this.handleChange} />
-
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" value={contact.email} onChange={this.handleChange} />
-
-                <label htmlFor="phone">Phone</label>
-                <input type="text" id="phone" name="phone" value={contact.phone} onChange={this.handleChange} />
+                <main>
+                    <div className="name">
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" id="name" name="name" value={contact.name} onChange={this.handleChange} />
+                    </div>
+                    <div className="email">
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" id="email" name="email" value={contact.email} onChange={this.handleChange} />
+                    </div>
+                    <div className="phone">
+                        <label htmlFor="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone" value={contact.phone} onChange={this.handleChange} />
+                    </div>
+                </main>
 
                 <button onClick={this.onSaveContact}>Save Contact</button>
             </form>
