@@ -1,3 +1,4 @@
+import { saveToStorage, loadFromStorage } from './utilService';
 export default {
   getContacts,
   getContactById,
@@ -6,7 +7,7 @@ export default {
   getEmptyContact
 }
 
-
+const contactsDB = 'contacts';
 
 const contacts = [
   {
@@ -140,8 +141,8 @@ function sort(arr) {
 }
 
 function getContacts(filterBy = null) {
+  var contactsToReturn = loadFromStorage(contactsDB) || saveToStorage(contactsDB, contacts);
   return new Promise((resolve, reject) => {
-    var contactsToReturn = contacts;
     if (filterBy) {
       contactsToReturn = filter(filterBy)
     }
@@ -150,8 +151,9 @@ function getContacts(filterBy = null) {
 }
 
 function getContactById(id) {
+  var contact = loadFromStorage(contactsDB);
   return new Promise((resolve, reject) => {
-    const contact = contacts.find(contact => contact._id === id)
+    contact = contacts.find(contact => contact._id === id)
     contact ? resolve(contact) : reject(`Contact id ${id} not found!`)
   })
 }
@@ -162,7 +164,7 @@ function deleteContact(id) {
     if (index !== -1) {
       contacts.splice(index, 1)
     }
-
+    saveToStorage(contactsDB, contacts)
     resolve(contacts)
   })
 }
@@ -173,6 +175,7 @@ function _updateContact(contact) {
     if (index !== -1) {
       contacts[index] = contact
     }
+    saveToStorage(contactsDB, contacts)
     resolve(contact)
   })
 }
@@ -181,12 +184,19 @@ function _addContact(contact) {
   return new Promise((resolve, reject) => {
     contact._id = _makeId()
     contacts.push(contact)
+    saveToStorage(contactsDB, contacts)
     resolve(contact)
   })
 }
 
 function saveContact(contact) {
-  return contact._id ? _updateContact(contact) : _addContact(contact)
+  if (contact._id) {
+    saveToStorage(contactsDB, contacts)
+    return _updateContact(contact)
+  } else {
+    saveToStorage(contactsDB, contacts)
+    return _addContact(contact)
+  }
 }
 
 function getEmptyContact() {
