@@ -23,13 +23,19 @@ export class HomePage extends Component {
         const currBtcRate = await bitcoinService.getRate(this.state.user.coins);
         this.setState({ currBtcRate })
     }
-
+    get currentCurrency() {
+        return this.state.user.coins.toLocaleString('en-US', {
+            style: "currency",
+            currency: 'USD',
+            minimumFractionDigits: 2
+        });
+    }
     render() {
         const { user, currBtcRate } = this.state;
         return (
             user && <div className='home-page'>
                 <h1> Hello {user.name} </h1>
-                <h3><span>💵</span> Coins: {user.coins}</h3>
+                <h3><span>💵</span> Coins: {this.currentCurrency}</h3>
                 <h3><span>🪙</span> BTC: {currBtcRate}</h3>
             </div>
         )
