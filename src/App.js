@@ -9,35 +9,24 @@ import {
 import { HomePage } from './pages/HomePage/HomePage';
 import { ContactPage } from './pages/ContactPage/ContactPage';
 import { StatisticPage } from './pages/StatisticPage/StatisticPage';
+import { ContactDetailsPage } from './pages/ContactDetailsPage/ContactDetailsPage';
+import { ContactPreview } from './cmps/ContactPreview';
+import { ContactEditPage } from './pages/ContactEditPage/ContactEditPage';
+import { AppHeader } from './cmps/AppHeader/AppHeader';
 
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <AppHeader />
         <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/contacts">Contacts</Link>
-            </li>
-            <li>
-              <Link to="/statistics">Statistics</Link>
-            </li>
-          </ul>
-
           <Switch>
-            <Route path="/statistics">
-              <StatisticPage />
-            </Route>
-            <Route path="/contacts">
-              <ContactPage />
-            </Route>
-            <Route path="/">
-              <HomePage />
-            </Route>
+            <Route path="/statistics" component={StatisticPage} />
+            <Route path="/contacts/edit/:id?" component={ContactEditPage} />
+            <Route path="/contacts/:id" component={ContactDetailsPage} />
+            <Route path="/contacts" component={ContactPage} />
+            <Route exact path="/" component={HomePage} />
           </Switch>
         </div>
       </Router>
