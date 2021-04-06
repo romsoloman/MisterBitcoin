@@ -1,5 +1,5 @@
+import { saveToStorage, loadFromStorage } from './utilService';
 const axios = require('axios');
-import { loadFromStorage, saveToStorage } from './utilService';
 export default {
     getRate,
     getMarketPrice,
@@ -21,11 +21,11 @@ function getRate(coins) {
 }
 
 function getMarketPrice() {
-    const market = loadFromStorage(MARKET_DB);
+    let market = loadFromStorage(MARKET_DB);
     if (!market) {
         return axios.get(`https://api.blockchain.info/charts/market-price?timespan=5months&format=json&cors=true`)
             .then(res => {
-                market.push(res.data.values);
+                market = res.data.values;
                 saveToStorage(MARKET_DB, market)
                 return res.data.values;
             })
@@ -34,14 +34,16 @@ function getMarketPrice() {
                 return error;
             })
     }
+    return market;
 }
 
 function getConfirmedTransactions() {
-    const transactions = loadFromStorage(TRANSACTIONS_DB);
+    let transactions = loadFromStorage(TRANSACTIONS_DB);
     if (!transactions) {
         return axios.get(`https://api.blockchain.info/charts/trade-volume?timespan=5months&format=json&cors=true`)
             .then(res => {
-                transactions.push(res.data.values)
+                transactions = res.data.values;
+                console.log('transactions', transactions);
                 saveToStorage(TRANSACTIONS_DB, transactions)
                 return res.data.values;
             })
@@ -49,5 +51,6 @@ function getConfirmedTransactions() {
                 console.log(error);
                 return error;
             })
-    } else return transactions;
+    }
+    return transactions;
 }
