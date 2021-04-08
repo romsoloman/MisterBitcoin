@@ -1,32 +1,32 @@
 
 import { Component } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getContactById, removeContact, chargeContact } from '../../store/actions/contactActions';
 import contactService from '../../services/contactService';
 
 import './ContactDetailsPage.scss'
 
-export class ContactDetailsPage extends Component {
-    state = {
-        contact: null
-    }
+export class _ContactDetailsPage extends Component {
+
     componentDidMount() {
-        this.loadContact();
+        this.props.getContactById(this.props.match.params.id)
     }
-    loadContact = async () => {
-        const { id } = this.props.match.params;
-        const contact = await contactService.getContactById(id)
-        this.setState({ contact })
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            this.props.getContactById(this.props.match.params.id)
+        }
     }
     closeDetails = () => {
         this.props.history.push('/contacts')
     }
     onDeleteContact = async (ev) => {
         ev.preventDefault();
-        await contactService.deleteContact(this.props.match.params.id)
+        await this.props.removeContact(this.props.contact._id)
         this.props.history.push('/contacts');
     }
     render() {
-        const { contact } = this.state;
+        const { contact } = this.props;
         return (
             contact && <div className='contact-details-page'>
                 <header>
@@ -45,3 +45,15 @@ export class ContactDetailsPage extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    contact: state.contactReducer.currContact
+})
+
+const mapDispatchToProps = {
+    getContactById,
+    removeContact,
+    chargeContact
+}
+
+export const ContactDetailsPage = connect(mapStateToProps, mapDispatchToProps)(_ContactDetailsPage)

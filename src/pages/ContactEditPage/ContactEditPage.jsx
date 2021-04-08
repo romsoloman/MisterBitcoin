@@ -1,19 +1,24 @@
 
 import { Component } from 'react'
+import { connect } from 'react-redux';
 import contactService from '../../services/contactService';
+import { saveContact } from '../../store/actions/contactActions'
 
 import './ContactEditPage.scss'
 
-export class ContactEditPage extends Component {
+export class _ContactEditPage extends Component {
     state = {
         contact: null,
         errMsg: '',
     }
     async componentDidMount() {
         const { id } = this.props.match.params;
-        const contact = id ? await contactService.getContactById(id) : await contactService.getEmptyContact();
-        if (contact) return this.setState({ contact });
-        else this.setState({ errMsg: 'Contact Not Found' })
+        try {
+            const contact = id ? await contactService.getContactById(id) : contactService.getEmptyContact()
+            this.setState({ contact })
+        } catch (err) {
+            this.setState({ errMsg: 'contact Not Found' })
+        }
     }
     handleChange = ({ target }) => {
         const field = target.name
@@ -22,7 +27,7 @@ export class ContactEditPage extends Component {
     }
     onSaveContact = async (ev) => {
         ev.preventDefault();
-        await contactService.saveContact({ ...this.state.contact })
+        await this.props.saveContact({ ...this.state.contact })
         this.props.history.push('/contacts');
     }
     render() {
@@ -49,3 +54,9 @@ export class ContactEditPage extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    saveContact
+}
+
+export const ContactEditPage = connect(null, mapDispatchToProps)(_ContactEditPage)

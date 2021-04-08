@@ -1,5 +1,7 @@
 export default {
     getUser,
+    signUp,
+    getLoggedinUser
 }
 
 const gUser =
@@ -12,4 +14,29 @@ const gUser =
 
 function getUser() {
     return Promise.resolve(gUser);
+}
+
+function signUp(name) {
+    const user = getEmptyUser();
+    user.name = name;
+    _saveLocalUser(user)
+    return Promise.resolve(user)
+}
+
+function _saveLocalUser(user) {
+    console.log('new user inserted to DB', user)
+    sessionStorage.setItem('loggedinUser', JSON.stringify(user))
+    return user
+}
+
+function getEmptyUser() {
+    return {
+        name: '',
+        coins: 100,
+        moves: []
+    }
+}
+
+function getLoggedinUser() {
+    return JSON.parse(sessionStorage.getItem('loggedinUser') || 'null')
 }

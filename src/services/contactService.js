@@ -141,19 +141,20 @@ function sort(arr) {
 }
 
 function getContacts(filterBy = null) {
-  var contactsToReturn = loadFromStorage(CONTACTS_DB) || saveToStorage(CONTACTS_DB, contacts);
+  var contactsToReturn = loadFromStorage(CONTACTS_DB) || contacts;
   return new Promise((resolve, reject) => {
     if (filterBy) {
       contactsToReturn = filter(filterBy)
     }
+    saveToStorage(CONTACTS_DB, contactsToReturn)
     resolve(sort(contactsToReturn))
   })
 }
 
 function getContactById(id) {
-  var contact = loadFromStorage(CONTACTS_DB);
+  const contacts = loadFromStorage(CONTACTS_DB);
   return new Promise((resolve, reject) => {
-    contact = contacts.find(contact => contact._id === id)
+    var contact = contacts.find(contact => contact._id === id)
     contact ? resolve(contact) : reject(`Contact id ${id} not found!`)
   })
 }
