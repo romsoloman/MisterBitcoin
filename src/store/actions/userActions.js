@@ -18,9 +18,11 @@ export function signUp(user) {
   }
 }
 
-export function spendBalance(spendAmount) {
+export function chargeUser(user, spendAmount, contact) {
   return async dispatch => {
-    // Update the userService
-    dispatch({ type: 'SPEND_BALANCE', spendAmount })
+    const spentAmount = await userService.chargeUser(user, spendAmount)
+    const userMoves = await userService.addMove(user, spendAmount, contact)
+    dispatch({ type: 'SPEND_BALANCE', spentAmount })
+    dispatch({ type: 'UPDATE_USER_MOVES', userMoves })
   }
 }

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import './AppHeader.scss'
 
 export const AppHeader = (props) => {
-
     return (
         <div className='app-header'>
             <div className="logo">

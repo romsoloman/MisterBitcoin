@@ -3,14 +3,17 @@ import { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getContactById, removeContact, chargeContact } from '../../store/actions/contactActions';
-import contactService from '../../services/contactService';
+import { loadUser } from '../../store/actions/userActions';
 
 import './ContactDetailsPage.scss'
+import { TransferFund } from '../../cmps/TransferFund/TransferFund';
+import { MovesList } from '../../cmps/MovesList/MovesList';
 
 export class _ContactDetailsPage extends Component {
 
     componentDidMount() {
         this.props.getContactById(this.props.match.params.id)
+        this.props.loadUser()
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.match.params.id !== this.props.match.params.id) {
@@ -26,9 +29,9 @@ export class _ContactDetailsPage extends Component {
         this.props.history.push('/contacts');
     }
     render() {
-        const { contact } = this.props;
+        const { contact, user } = this.props;
         return (
-            contact && <div className='contact-details-page'>
+            (contact && user) && <div className='contact-details-page'>
                 <header>
                     <button onClick={this.closeDetails} className='exit-btn'><i className="fas fa-times"></i></button>
                 </header>
@@ -36,6 +39,8 @@ export class _ContactDetailsPage extends Component {
                     <h3>Name: {contact.name}</h3>
                     <h3>Phone: {contact.phone}</h3>
                     <h3>Email: {contact.email}</h3>
+                    <TransferFund contact={contact} />
+                    <MovesList moves={user.moves} />
                 </main>
                 <footer>
                     <button className='btn edit-btn'><Link to={'/contacts/edit/' + this.props.match.params.id}>Edit Contact</Link></button>
@@ -47,13 +52,15 @@ export class _ContactDetailsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    contact: state.contactReducer.currContact
+    contact: state.contactReducer.currContact,
+    user: state.userReducer.user
 })
 
 const mapDispatchToProps = {
     getContactById,
     removeContact,
-    chargeContact
+    chargeContact,
+    loadUser
 }
 
 export const ContactDetailsPage = connect(mapStateToProps, mapDispatchToProps)(_ContactDetailsPage)

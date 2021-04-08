@@ -4,6 +4,7 @@ import bitcoinService from '../../services/bitcoinService';
 import './HomePage.scss'
 import { connect } from 'react-redux';
 import { loadUser } from '../../store/actions/userActions';
+import { MovesList } from '../../cmps/MovesList/MovesList';
 
 export class _HomePage extends Component {
     state = {
@@ -27,12 +28,14 @@ export class _HomePage extends Component {
     render() {
         const { user } = this.props;
         const { currBtcRate } = this.state;
+        if (!user) return <div>loading...</div>;
         return (
             user && <div className='home-page'>
                 <div className="user-details">
                     <h1> Hello {user.name} </h1>
                     <h3><span>💵</span> Coins: {this.currentCurrency}</h3>
                     <h3><span>🪙</span> BTC: {currBtcRate}</h3>
+                    <MovesList moves={user.moves} />
                 </div>
             </div>
         )

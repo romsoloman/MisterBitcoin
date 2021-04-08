@@ -16,7 +16,12 @@ export function userReducer(state = INITIAL_STATE, action) {
     case 'SPEND_BALANCE':
       return {
         ...state,
-        user: { ...state.user, balance: state.user.balance - action.spendAmount }
+        user: { ...state.user, coins: state.user.coins - action.spendAmount }
+      }
+    case 'UPDATE_USER_MOVES':
+      return {
+        ...state,
+        user: { ...state.user, moves: action.moves }
       }
     default:
       return state

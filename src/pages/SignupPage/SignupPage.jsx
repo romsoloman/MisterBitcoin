@@ -26,7 +26,7 @@ export class _SignupPage extends Component {
         return (
             user && <form className='signup-page' onSubmit={(ev) => ev.preventDefault()}>
                 <div className="name">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">Please Enter Your Name:</label>
                     <input type="text" id="name" name="name" value={user.name} onChange={this.handleChange} />
                 </div>
                 <button onClick={this.onSaveUser}>Sign Up</button>
