@@ -16,6 +16,7 @@ export const MovesList = ({ moves }) => {
     if (!moves) document.location.reload();
     return (
         moves && <ul className='moves-list'>
+            <li>Your Moves:</li>
             {moves.map(move => {
                 return (<li key={move.toId}>
                     <p>{move.to}</p>
