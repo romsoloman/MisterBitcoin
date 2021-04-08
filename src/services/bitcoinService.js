@@ -4,10 +4,22 @@ export default {
     getRate,
     getMarketPrice,
     getConfirmedTransactions,
+    getEth
 }
 
 const TRANSACTIONS_DB = 'transactions';
 const MARKET_DB = 'market';
+
+function getEth() {
+    return axios.get(`https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD`)
+        .then(res => {
+            return res.data.USD;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return error;
+        })
+}
 
 function getRate(coins) {
     return axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
