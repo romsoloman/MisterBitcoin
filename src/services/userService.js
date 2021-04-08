@@ -4,6 +4,7 @@ export default {
     getLoggedinUser
 }
 
+
 const gUser =
 {
     name: "Rom Soloman",
@@ -13,12 +14,14 @@ const gUser =
 
 
 function getUser() {
+    // const loggedinUser = sessionStorage.getItem('loggedinUser') || gUser;
+    // _saveLocalUser(loggedinUser)
     return Promise.resolve(gUser);
 }
 
-function signUp(name) {
+function signUp({ name }) {
     const user = getEmptyUser();
-    user.name = name;
+    user.name = name
     _saveLocalUser(user)
     return Promise.resolve(user)
 }

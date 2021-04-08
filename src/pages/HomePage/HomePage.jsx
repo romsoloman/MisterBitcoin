@@ -1,37 +1,32 @@
 
 import { Component } from 'react';
-import userService from '../../services/userService';
 import bitcoinService from '../../services/bitcoinService';
-
 import './HomePage.scss'
+import { connect } from 'react-redux';
+import { loadUser } from '../../store/actions/userActions';
 
-export class HomePage extends Component {
+export class _HomePage extends Component {
     state = {
-        user: null,
         currBtcRate: null,
     }
     componentDidMount() {
-        this.loadUser();
-    }
-    loadUser = async () => {
-        const user = await userService.getUser();
-        this.setState({ user }, () => {
-            this.loadBtcRate();
-        })
+        this.props.loadUser()
+        setTimeout(() => this.loadBtcRate(), 50)
     }
     loadBtcRate = async () => {
-        const currBtcRate = await bitcoinService.getRate(this.state.user.coins);
+        const currBtcRate = await bitcoinService.getRate(this.props.user.coins);
         this.setState({ currBtcRate })
     }
     get currentCurrency() {
-        return this.state.user.coins.toLocaleString('en-US', {
+        return this.props.user.coins.toLocaleString('en-US', {
             style: "currency",
             currency: 'USD',
             minimumFractionDigits: 2
         });
     }
     render() {
-        const { user, currBtcRate } = this.state;
+        const { user } = this.props;
+        const { currBtcRate } = this.state;
         return (
             user && <div className='home-page'>
                 <div className="user-details">
@@ -43,3 +38,15 @@ export class HomePage extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.userReducer.user
+    }
+}
+
+const mapDispatchToProps = {
+    loadUser,
+}
+
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(_HomePage)

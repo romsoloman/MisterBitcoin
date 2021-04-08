@@ -19,6 +19,9 @@ export const AppHeader = (props) => {
                     <li>
                         <Link to="/statistics">Statistics</Link>
                     </li>
+                    <li>
+                        <Link to="/signup">Sign up</Link>
+                    </li>
                 </ul>
             </nav>
         </div>

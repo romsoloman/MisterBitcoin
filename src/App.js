@@ -4,18 +4,23 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import { HomePage } from './pages/HomePage/HomePage';
 import { ContactPage } from './pages/ContactPage/ContactPage';
 import { StatisticPage } from './pages/StatisticPage/StatisticPage';
 import { ContactDetailsPage } from './pages/ContactDetailsPage/ContactDetailsPage';
-import { ContactPreview } from './cmps/ContactPreview';
 import { ContactEditPage } from './pages/ContactEditPage/ContactEditPage';
 import { AppHeader } from './cmps/AppHeader/AppHeader';
+import { SignupPage } from './pages/SignupPage/SignupPage';
 
 
 function App() {
+  const PrivateRoute = (props) => {
+    const isLoggedin = sessionStorage.getItem('loggedinUser') || false;
+    return isLoggedin ? <Route component={props.component} path={props.path} /> : <Redirect to="/signup" />
+  }
   return (
     <div className="App">
       <Router>
@@ -23,10 +28,15 @@ function App() {
         <div>
           <Switch>
             <Route path="/statistics" component={StatisticPage} />
-            <Route path="/contacts/edit/:id?" component={ContactEditPage} />
-            <Route path="/contacts/:id" component={ContactDetailsPage} />
-            <Route path="/contacts" component={ContactPage} />
-            <Route exact path="/" component={HomePage} />
+            <PrivateRoute component={ContactEditPage} path='/contacts/edit/:id?' />
+            {/* <Route path="/contacts/edit/:id?" component={ContactEditPage} /> */}
+            <PrivateRoute component={ContactDetailsPage} path='/contacts/:id' />
+            {/* <Route path="/contacts/:id" component={ContactDetailsPage} /> */}
+            <PrivateRoute component={ContactPage} path='/contacts' />
+            {/* <Route path="/contacts" component={ContactPage} /> */}
+            <Route path="/signup" component={SignupPage} />
+            <PrivateRoute exact component={HomePage} path='/' />
+            {/* <Route exact path="/" component={HomePage} /> */}
           </Switch>
         </div>
       </Router>
