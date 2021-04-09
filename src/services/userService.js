@@ -6,6 +6,7 @@ export default {
     getLoggedinUser,
     chargeUser,
     addMove,
+    logout,
 
 }
 
@@ -24,9 +25,10 @@ const gUser =
 //     return Promise.resolve(gUser);
 // }
 
-function signUp({ name }) {
+function signUp({ name, password }) {
     const user = getEmptyUser();
     user.name = name
+    user.password = password
     _saveLocalUser(user)
     return Promise.resolve(user)
 }
@@ -49,6 +51,10 @@ async function addMove(user, amount, contact) {
     })
     _saveLocalUser(loggedinUser)
     return loggedinUser
+}
+
+function logout() {
+    sessionStorage.clear()
 }
 
 function _saveLocalUser(user) {

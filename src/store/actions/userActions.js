@@ -18,6 +18,14 @@ export function signUp(user) {
   }
 }
 
+export function logout() {
+  return async dispatch => {
+    const loggedoutUser = await userService.logout()
+    dispatch({ type: 'DELETE_USER', loggedoutUser })
+  }
+}
+
+
 export function chargeUser(user, spendAmount, contact) {
   return async dispatch => {
     const spentAmount = await userService.chargeUser(user, spendAmount)

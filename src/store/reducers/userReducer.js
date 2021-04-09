@@ -8,6 +8,11 @@ export function userReducer(state = INITIAL_STATE, action) {
         ...state,
         user: action.user
       }
+    case 'REMOVE_USER':
+      return {
+        ...state,
+        user: (state.user.name !== action.user.name)
+      }
     case 'SET_USER':
       return {
         ...state,
