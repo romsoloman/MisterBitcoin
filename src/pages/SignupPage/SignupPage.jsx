@@ -28,29 +28,19 @@ export class _SignupPage extends Component {
     }
     render() {
         const { user } = this.state;
-        const loggedinUser = JSON.parse(sessionStorage.getItem('loggedinUser'));
-        if (loggedinUser) {
-            return (
-                <div>
-                    <h1>Welcome {loggedinUser.name}</h1>
-                    <button onClick={this.onLogout}>Logout</button>
+        return (
+            user && <form className='signup-page' onSubmit={(ev) => ev.preventDefault()}>
+                <div className="name">
+                    <label htmlFor="name">Please Enter Your Name:</label>
+                    <input type="text" id="name" name="name" value={user.name} onChange={this.handleChange} />
                 </div>
-            )
-        } else {
-            return (
-                user && <form className='signup-page' onSubmit={(ev) => ev.preventDefault()}>
-                    <div className="name">
-                        <label htmlFor="name">Please Enter Your Name:</label>
-                        <input type="text" id="name" name="name" value={user.name} onChange={this.handleChange} />
-                    </div>
-                    <div className="password">
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" id="password" name="password" value={user.password} onChange={this.handleChange} />
-                    </div>
-                    <button onClick={this.onSaveUser}>Sign Up</button>
-                </form>
-            )
-        }
+                <div className="password">
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id="password" name="password" value={user.password} onChange={this.handleChange} />
+                </div>
+                <button onClick={this.onSaveUser}>Sign Up</button>
+            </form>
+        )
     }
 }
 

@@ -29,14 +29,10 @@ function App() {
           <Switch>
             <Route path="/statistics" component={StatisticPage} />
             <PrivateRoute component={ContactEditPage} path='/contacts/edit/:id?' />
-            {/* <Route path="/contacts/edit/:id?" component={ContactEditPage} /> */}
             <PrivateRoute component={ContactDetailsPage} path='/contacts/:id' />
-            {/* <Route path="/contacts/:id" component={ContactDetailsPage} /> */}
             <PrivateRoute component={ContactPage} path='/contacts' />
-            {/* <Route path="/contacts" component={ContactPage} /> */}
             <Route path="/signup" component={SignupPage} />
             <PrivateRoute exact component={HomePage} path='/' />
-            {/* <Route exact path="/" component={HomePage} /> */}
           </Switch>
         </div>
       </Router>

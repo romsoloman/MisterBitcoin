@@ -5,8 +5,11 @@ export const ContactPreview = ({ contact }) => {
     return (
         <Link to={'/contacts/' + contact._id}>
             <li className='contact-preview'>
-                {/* <img src={`https://randomuser.me/api/portraits/men/${random}.jpg`} alt="" /> */}
-                <h5>{contact.name}</h5>
+                <img src={contact.imgUrl} alt="" />
+                <div className="contact-details">
+                    <h3>{contact.name}</h3>
+                    <p>{contact.phone}</p>
+                </div>
             </li>
         </Link>
     )

@@ -4,9 +4,27 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    background-color: #eee;
-    border-radius: 30px;
-        h5 {
-            color: rgb(45, 41, 41);
+    background-color:#192f5d;
+    border-bottom: 1px solid #0d1831;
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    .contact-details{
+        padding-left: 15px;
+        display: flex;
+        flex-direction: column;
+        h3 {
+            font-weight: 200;
+            font-size: 18px;
+            color: white;
+            margin: 0;
         }
+        p{
+            font-size: 12px;
+            color: grey;
+            margin: 0;
+        }
+    }
 }

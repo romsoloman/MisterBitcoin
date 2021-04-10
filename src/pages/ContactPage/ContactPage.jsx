@@ -23,7 +23,7 @@ export class _ContactPage extends Component {
             contacts && <div className='contact-page'>
                 <ContactFilter onFilter={this.onFilter} />
                 <ContactList contacts={contacts} />
-                <button><Link to='/contacts/edit' >Add Contact</Link></button>
+                <button><Link to='/contacts/edit' ><i className="fas fa-plus"></i></Link></button>
             </div>
         )
     }
