@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import './AppHeader.scss'
 
 export const AppHeader = (props) => {
+    const loggedinUser = JSON.parse(sessionStorage.getItem('loggedinUser'));
     return (
         <div className='app-header'>
             <div className="logo">
@@ -18,9 +19,12 @@ export const AppHeader = (props) => {
                     <li>
                         <Link to="/statistics">Statistics</Link>
                     </li>
-                    <li>
-                        <Link to="/signup">Sign up</Link>
-                    </li>
+
+                    {loggedinUser ? <li>
+                        <Link to="/signup">{loggedinUser.name}</Link>
+                    </li> : <li>
+                            <Link to="/signup">Sign up</Link>
+                        </li>}
                 </ul>
             </nav>
         </div>

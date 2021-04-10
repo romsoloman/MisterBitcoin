@@ -17,7 +17,7 @@ export const MovesList = ({ moves }) => {
     return (
         moves && <ul className='moves-list'>
             <li><i className="fas fa-recycle"></i>Moves History</li>
-            {moves.map(move => {
+            {moves.length === 0 ? <h1>No transactions were made in this account</h1> : moves.map(move => {
                 return (<li key={move.toId}>
                     <div className="contact-transaction">
                         <span className='amount'>{formattedCurrency(move.amount)}</span> |

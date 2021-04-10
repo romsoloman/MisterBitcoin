@@ -28,19 +28,28 @@ export class _SignupPage extends Component {
     }
     render() {
         const { user } = this.state;
+        const loggedinUser = JSON.parse(sessionStorage.getItem('loggedinUser'))
+        if (!loggedinUser) {
+            return (
+                user && <form className='signup-page' onSubmit={(ev) => ev.preventDefault()}>
+                    <h1>Welcome to MisterBitcoin</h1>
+                    <div className="name">
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" id="name" name="name" value={user.name} onChange={this.handleChange} placeholder="Name" />
+                    </div>
+                    <div className="password">
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" id="password" name="password" value={user.password} onChange={this.handleChange} placeholder="Password" />
+                    </div>
+                    <button onClick={this.onSaveUser}>Sign Up</button>
+                </form>
+            )
+        }
         return (
-            user && <form className='signup-page' onSubmit={(ev) => ev.preventDefault()}>
-                <h1>Welcome to MisterBitcoin</h1>
-                <div className="name">
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={user.name} onChange={this.handleChange} placeholder="Name" />
-                </div>
-                <div className="password">
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" value={user.password} onChange={this.handleChange} placeholder="Password" />
-                </div>
-                <button onClick={this.onSaveUser}>Sign Up</button>
-            </form>
+            <div className='welcome'>
+                <h3>Welcome, {loggedinUser.name}</h3>
+                <button onClick={this.onLogout}>Logout</button>
+            </div>
         )
     }
 }
