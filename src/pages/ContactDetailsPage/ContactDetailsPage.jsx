@@ -33,19 +33,18 @@ export class _ContactDetailsPage extends Component {
         return (
             (contact && user) && <div className='contact-details-page'>
                 <header>
-                    <button onClick={this.closeDetails} className='exit-btn'><i className="fas fa-times"></i></button>
+                    {/* <button className='btn delete-btn' onClick={this.onDeleteContact}>Delete Contact</button> */}
+                    <button onClick={this.closeDetails} className='exit-btn'>Back</button>
+                    <button className='btn edit-btn'><Link to={'/contacts/edit/' + this.props.match.params.id}>Edit</Link></button>
                 </header>
                 <main className="user-info">
-                    <h3>Name: {contact.name}</h3>
-                    <h3>Phone: {contact.phone}</h3>
-                    <h3>Email: {contact.email}</h3>
+                    <img src={contact.imgUrl} alt="" />
+                    <h3>{contact.name}</h3>
+                    <h5>{contact.phone}</h5>
+                    <h5>{contact.email}</h5>
                     <TransferFund contact={contact} />
                     <MovesList moves={user.moves} />
                 </main>
-                <footer>
-                    <button className='btn edit-btn'><Link to={'/contacts/edit/' + this.props.match.params.id}>Edit Contact</Link></button>
-                    <button className='btn delete-btn' onClick={this.onDeleteContact}>Delete Contact</button>
-                </footer>
             </div>
         )
     }

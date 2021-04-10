@@ -22,13 +22,11 @@ export class _TransferFund extends Component {
         this.setState({ coins: '' })
     }
     render() {
-        const { contact } = this.props;
+        // const { contact } = this.props;
         return (
             <article className='transfer-fund'>
-                <p>Transfer Coins To {contact.name}:</p>
                 <form onSubmit={(ev) => ev.preventDefault()}>
                     <div className="amount">
-                        <label htmlFor="amount">Amount:</label>
                         <input type="number" id="amount" name="amount" value={this.state.coins} onChange={this.handleChange} />
                     </div>
                     <button onClick={this.onTransferCoins}>Transfer</button>

@@ -1,9 +1,26 @@
 .transfer-fund {
-    background-color: lightskyblue;
-    width: 100%;
-    height: 100px;
+    width: 70%;
     border-radius: 10px;
     color: black;
     font-weight:bold;
     padding: 10px;
+    form{
+        height: 30px;
+        display: flex;
+        width: 100%;
+        input{
+            color: whitesmoke;
+            padding: 5px 12px;
+            height: 70%;
+            background-color: rgb(21, 19, 19);
+            border: none;
+            width: 150px;
+        }
+        button{
+            width: 60px;
+            background-color: #ab3761;
+            border: none;
+            color: whitesmoke;
+        }
+    }
 }

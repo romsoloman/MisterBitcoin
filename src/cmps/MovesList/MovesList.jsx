@@ -16,12 +16,15 @@ export const MovesList = ({ moves }) => {
     if (!moves) document.location.reload();
     return (
         moves && <ul className='moves-list'>
-            <li>Your Moves:</li>
+            <li><i className="fas fa-recycle"></i>Moves History</li>
             {moves.map(move => {
                 return (<li key={move.toId}>
-                    <p>{move.to}</p>
-                    <p>At: {formattedTime(move.at)}</p>
-                    <p>Amount: {formattedCurrency(move.amount)}</p>
+                    <div className="contact-transaction">
+                        <span className='amount'>{formattedCurrency(move.amount)}</span> |
+                        <span className='contact-name'>{move.to}</span>
+                    </div>
+                    <p className='status'>status:<span>approve</span></p>
+                    <p className='at'>{formattedTime(move.at)}</p>
                 </li>)
             })}
         </ul>

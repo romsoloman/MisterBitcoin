@@ -1,45 +1,48 @@
 .contact-details-page {
     margin: 3rem auto 0;
-    padding: 30px 50px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     max-width: 350px;
     height: 500px;
-    background-color:rgb(255, 255, 255);
-    border-radius: 10px;
+    overflow: scroll;
+    background-color:#192f5d;
     header{
+        background-color: rgb(16, 15, 15);
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
         button{
+            height: 40px;
+            width: 50px;
             border: none;
-            background-color: white;
-            font-size: 22px;
-            float: right;
-            text-align: right;
+            background-color: rgb(16, 15, 15);
+            color: rgb(230, 227, 227);
+            font-size: 13px;
+            a{color:white}
         }
     }
     .user-info{
-        height: 415px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-    }
-    footer{
-        display: flex;
-        justify-content: space-between;
-        .btn{
-            padding: 2px 5px;
-            border-radius: 5px;
-            border: 1px solid #eee;
+        align-items: center;
+        img{
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
         }
-        .delete-btn{
-            background-color: rgb(227, 62, 62);
-            color: white;
+        h3{
+            font-size: 25px;
+            color: #ab3761;
+            font-weight: 400;
+            margin: 0;
         }
-        .edit-btn{
-            background-color: rgb(62, 117, 227);
-            a{
-                color: white;
-            }
+        h5{
+            font-size: 15px;
+            margin: 15px 0 3px;
+            font-weight: 400;
+            color: lightgrey;
         }
     }
 }
