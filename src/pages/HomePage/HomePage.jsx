@@ -5,6 +5,7 @@ import './HomePage.scss'
 import { connect } from 'react-redux';
 import { loadUser } from '../../store/actions/userActions';
 import { MovesList } from '../../cmps/MovesList/MovesList';
+import { StatisticPage } from '../StatisticPage/StatisticPage';
 
 export class _HomePage extends Component {
     state = {
@@ -54,6 +55,7 @@ export class _HomePage extends Component {
                             <h3>${currUSDBTC}</h3>
                         </div>
                     </div>
+                    {/* <StatisticPage /> */}
                     <MovesList moves={user.moves} />
                 </div>
             </div>

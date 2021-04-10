@@ -37,6 +37,7 @@ function getMarketPrice() {
     if (!market) {
         return axios.get(`https://api.blockchain.info/charts/market-price?timespan=5months&format=json&cors=true`)
             .then(res => {
+                console.log('res.data', res.data);
                 market = res.data.values;
                 saveToStorage(MARKET_DB, market)
                 return res.data.values;
