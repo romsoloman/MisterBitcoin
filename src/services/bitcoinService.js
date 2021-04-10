@@ -4,16 +4,16 @@ export default {
     getRate,
     getMarketPrice,
     getConfirmedTransactions,
-    getEth
+    getUSDBTC
 }
 
 const TRANSACTIONS_DB = 'transactions';
 const MARKET_DB = 'market';
 
-function getEth() {
-    return axios.get(`https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD`)
+function getUSDBTC() {
+    return axios.get(`https://api.coindesk.com/v1/bpi/currentprice.json`)
         .then(res => {
-            return res.data.USD;
+            return res.data.bpi.USD.rate_float;
         })
         .catch(function (error) {
             console.log(error);

@@ -30,27 +30,26 @@ export class _ContactEditPage extends Component {
         await this.props.saveContact({ ...this.state.contact })
         this.props.history.push('/contacts');
     }
+    closeEdit = () => {
+        this.props.history.push('/contacts')
+    }
     render() {
         const { contact } = this.state;
         return (
-            contact && <form className='edit-page' onSubmit={(ev) => ev.preventDefault()}>
-                <main>
-                    <div className="name">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" name="name" value={contact.name} onChange={this.handleChange} />
-                    </div>
-                    <div className="email">
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" value={contact.email} onChange={this.handleChange} />
-                    </div>
-                    <div className="phone">
-                        <label htmlFor="phone">Phone:</label>
-                        <input type="text" id="phone" name="phone" value={contact.phone} onChange={this.handleChange} />
-                    </div>
-                </main>
-
-                <button onClick={this.onSaveContact}>Save Contact</button>
-            </form>
+            contact && <div className='edit-page'>
+                <header>
+                    <button onClick={this.closeEdit} className='exit-btn'>Back</button>
+                </header>
+                <form onSubmit={(ev) => ev.preventDefault()}>
+                    <main>
+                        {contact._id ? <img src={contact.imgUrl} alt="" /> : <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="" />}
+                        <input type="text" id="name" name="name" value={contact.name} onChange={this.handleChange} placeholder="Name" />
+                        <input type="email" id="email" name="email" value={contact.email} onChange={this.handleChange} placeholder="Email" />
+                        <input type="text" id="phone" name="phone" value={contact.phone} onChange={this.handleChange} placeholder="Phone" />
+                        <button onClick={this.onSaveContact}>Save</button>
+                    </main>
+                </form>
+            </div>
         )
     }
 }

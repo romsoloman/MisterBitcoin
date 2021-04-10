@@ -203,7 +203,7 @@ function _updateContact(contact) {
 function _addContact(contact) {
   return new Promise((resolve, reject) => {
     contact._id = _makeId()
-    contact.imgUrl = "http://graph.facebook.com/v2.5/" + getRandomInt(1, 300) + "/picture?height=200&height=200"
+    contact.imgUrl = `https://randomuser.me/api/portraits/med/men/${getRandomInt(1, 100)}.jpg`
     contacts.push(contact)
     saveToStorage(CONTACTS_DB, contacts)
     resolve(contact)

@@ -1,18 +1,43 @@
 .signup-page {
-    background-color: #fff;
-    box-shadow:0px 0px 4px 2px white;
+    background-color: #192f5d;
+    box-shadow: 0px 0px 4px 2px white;
     margin: 3rem auto;
-    height: 200px;
-    width: 300px;
+    height: 500px;
+    width: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    text-align: center;
-    .name{
+    justify-content: center;
+    position: relative;
+    h1{
+        top: 50px;
+        position: absolute;
+        font-size: 22px;
+        margin: 0;
+        font-weight: 500;
+        color: lightgrey;
+    }
+    div{
+        color: lightgrey;
+        width: 60%;
         height: 70px;
         display: flex;
         justify-content: space-around;
         flex-direction: column;
+        margin-bottom: 1rem;
+        input{
+            background-color: #2c3b5c;
+            border: none;
+            height: 30px;
+        }
+    }
+    button{
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+        background-color:#ab3761;
+        padding: 5px 8px;
+        color: white;
     }
 }

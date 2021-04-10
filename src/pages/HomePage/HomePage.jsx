@@ -9,23 +9,22 @@ import { MovesList } from '../../cmps/MovesList/MovesList';
 export class _HomePage extends Component {
     state = {
         currBtcRate: null,
-        currEthRate: null,
+        currUSDBTC: null,
     }
     componentDidMount() {
         this.props.loadUser()
         setTimeout(() => {
             this.loadBtcRate()
-            this.loadEthRate(this.props.user.coins);
+            this.loadUSDBTC()
         }, 50)
-    }
-    loadEthRate = async (amount) => {
-        let currEthRate = await bitcoinService.getEth();
-        currEthRate = amount / currEthRate;
-        this.setState({ currEthRate })
     }
     loadBtcRate = async () => {
         const currBtcRate = await bitcoinService.getRate(this.props.user.coins);
         this.setState({ currBtcRate })
+    }
+    loadUSDBTC = async () => {
+        const currUSDBTC = await bitcoinService.getUSDBTC();
+        this.setState({ currUSDBTC })
     }
     get currentCurrency() {
         return this.props.user.coins.toLocaleString('en-US', {
@@ -36,15 +35,25 @@ export class _HomePage extends Component {
     }
     render() {
         const { user } = this.props;
-        const { currBtcRate, currEthRate } = this.state;
+        const { currBtcRate, currUSDBTC } = this.state;
         if (!user) return <div>loading...</div>;
         return (
             user && <div className='home-page'>
                 <div className="user-details">
-                    <h1> Hello {user.name} </h1>
-                    <h3><span>💵</span> Coins: {this.currentCurrency}</h3>
-                    <h3><span>🪙</span> BTC: {currBtcRate}</h3>
-                    <h3><span>🪙</span> ETH: {currEthRate}</h3>
+                    <div className="user-name">
+                        <h1> Hello, {user.name} </h1>
+                    </div>
+                    <div className="user-balance">
+                        <div className="curr-balance">
+                            <h4>current balance</h4>
+                            <h3>BTC: <span>{currBtcRate}</span></h3>
+                            <h3>USD: <span>{this.currentCurrency}</span></h3>
+                        </div>
+                        <div className="curr-btc">
+                            <h4>current btc usd</h4>
+                            <h3>${currUSDBTC}</h3>
+                        </div>
+                    </div>
                     <MovesList moves={user.moves} />
                 </div>
             </div>

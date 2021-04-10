@@ -30,13 +30,14 @@ export class _SignupPage extends Component {
         const { user } = this.state;
         return (
             user && <form className='signup-page' onSubmit={(ev) => ev.preventDefault()}>
+                <h1>Welcome to MisterBitcoin</h1>
                 <div className="name">
-                    <label htmlFor="name">Please Enter Your Name:</label>
-                    <input type="text" id="name" name="name" value={user.name} onChange={this.handleChange} />
+                    <label htmlFor="name">Name:</label>
+                    <input type="text" id="name" name="name" value={user.name} onChange={this.handleChange} placeholder="Name" />
                 </div>
                 <div className="password">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" value={user.password} onChange={this.handleChange} />
+                    <input type="password" id="password" name="password" value={user.password} onChange={this.handleChange} placeholder="Password" />
                 </div>
                 <button onClick={this.onSaveUser}>Sign Up</button>
             </form>
