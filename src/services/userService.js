@@ -34,6 +34,7 @@ function signUp({ name, password }) {
 }
 
 async function chargeUser(user, chargeAmount) {
+    if (user.coins < 0) return;
     const loggedinUser = { ...user };
     loggedinUser.coins -= chargeAmount
     _saveLocalUser(loggedinUser)
@@ -58,7 +59,7 @@ function logout() {
 }
 
 function _saveLocalUser(user) {
-    console.log('new user inserted to DB', user)
+    // console.log('new user inserted to DB', user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(user))
     return user
 }
